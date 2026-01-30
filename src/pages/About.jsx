@@ -28,7 +28,7 @@ export default function About() {
     },
     {
       category: "Tools & Others",
-      icon: <Zap className="w-10 h-10 text-yellow-400 animate-pulse" />,
+      icon: <Zap className="w-10 h-10 text-yellow-400 animate-pulse-slow" />,
       items: [
         "GitHub",
         "API Integration",
@@ -49,42 +49,40 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
         {/* Header */}
         <div className="mb-16 animate-fadeInUp">
-          <h1 className="text-5xl font-bold mb-4">About Me</h1>
+          <h1 className="text-5xl font-bold mb-4 animate-fadeInUp delay-100">
+            About Me
+          </h1>
           <div className="h-1 w-24 bg-gradient-to-r from-red-600 to-pink-500 rounded-full animate-glow" />
         </div>
 
         {/* Bio + Stats */}
         <div className="grid md:grid-cols-3 gap-10 mb-20">
           {/* Bio */}
-          <div className="md:col-span-2 space-y-6 animate-fadeInUp">
-            <p className="text-gray-300 text-lg leading-relaxed">
-              I'm a passionate Junior Frontend React Developer with hands-on
-              experience building responsive, high-performance web applications.
-              I enjoy crafting clean UI, smooth UX, and scalable frontend
-              architectures.
-            </p>
-
-            <p className="text-gray-300 text-lg leading-relaxed">
-              Currently pursuing my BS in Computer Science (2023–2027), I’ve
-              worked on real-world projects including live chat systems,
-              university management platforms, and modern portfolio websites.
-            </p>
-
-            <p className="text-gray-300 text-lg leading-relaxed">
-              Outside coding, I explore cybersecurity concepts, refine my
-              problem-solving skills, and contribute to open-source projects.
-            </p>
+          <div className="md:col-span-2 space-y-6 animate-fadeInUp delay-200">
+            {[
+              "I'm a passionate Junior Frontend React Developer with hands-on experience building responsive, high-performance web applications. I enjoy crafting clean UI, smooth UX, and scalable frontend architectures.",
+              "Currently pursuing my BS in Computer Science (2023–2027), I’ve worked on real-world projects including live chat systems, university management platforms, and modern portfolio websites.",
+              "Outside coding, I explore cybersecurity concepts, refine my problem-solving skills, and contribute to open-source projects.",
+            ].map((para, idx) => (
+              <p
+                key={idx}
+                className="text-gray-300 text-lg leading-relaxed animate-fadeInUp"
+                style={{ animationDelay: `${idx * 150}ms` }}
+              >
+                {para}
+              </p>
+            ))}
           </div>
 
           {/* Stats */}
-          <div className="space-y-6 animate-fadeInUp">
-            {stats.map((stat) => (
+          <div className="space-y-6 animate-fadeInUp delay-300">
+            {stats.map((stat, idx) => (
               <div
                 key={stat.label}
-                className="group bg-gradient-to-br from-red-600/10 to-pink-500/10
-                border border-red-600/20 rounded-xl p-6
-                hover:border-red-600/60 hover:shadow-lg hover:shadow-red-600/30
-                transform hover:-translate-y-1 transition-all duration-300"
+                className="group bg-gradient-to-br from-red-600/10 to-pink-500/10 border border-red-600/20 rounded-xl p-6
+                  hover:border-red-600/60 hover:shadow-lg hover:shadow-red-600/30
+                  transform hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 animate-fadeInUp"
+                style={{ animationDelay: `${idx * 120}ms` }}
               >
                 <h3 className="text-red-400 font-semibold text-sm uppercase tracking-wide">
                   {stat.label}
@@ -99,18 +97,17 @@ export default function About() {
 
         {/* Skills */}
         <div className="mb-20">
-          <h2 className="text-3xl font-bold mb-12">Technical Skills</h2>
-
+          <h2 className="text-3xl font-bold mb-12 animate-fadeInUp delay-100">
+            Technical Skills
+          </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {skills.map((skill, idx) => (
               <div
                 key={skill.category}
-                className="group bg-gradient-to-br from-gray-900 to-black
-                border border-red-600/20 rounded-xl p-8
-                hover:border-red-600/60 hover:shadow-xl hover:shadow-red-600/30
-                transform hover:-translate-y-2 hover:scale-[1.02]
-                transition-all duration-300 animate-fadeInUp"
-                style={{ animationDelay: `${idx * 120}ms` }}
+                className="group bg-gradient-to-br from-gray-900 to-black border border-red-600/20 rounded-xl p-8
+                  hover:border-red-600/60 hover:shadow-xl hover:shadow-red-600/30
+                  transform hover:-translate-y-2 hover:scale-[1.02] transition-all duration-300 animate-fadeInUp"
+                style={{ animationDelay: `${idx * 150}ms` }}
               >
                 <div className="flex items-center gap-4 mb-6">
                   <div className="group-hover:rotate-6 transition-transform duration-300">
@@ -125,7 +122,7 @@ export default function About() {
                       key={item}
                       className="text-gray-400 flex items-center gap-2 group-hover:text-gray-200 transition"
                     >
-                      <span className="w-1.5 h-1.5 bg-red-600 rounded-full" />
+                      <span className="w-1.5 h-1.5 bg-red-600 rounded-full animate-pulse-slow" />
                       {item}
                     </li>
                   ))}
@@ -136,23 +133,23 @@ export default function About() {
         </div>
 
         {/* Languages */}
-        <div className="animate-fadeInUp">
-          <h2 className="text-3xl font-bold mb-8">Languages</h2>
-
+        <div className="animate-fadeInUp delay-200">
+          <h2 className="text-3xl font-bold mb-8 animate-fadeInUp delay-100">
+            Languages
+          </h2>
           <div className="grid sm:grid-cols-2 gap-6 max-w-2xl">
-            {languages.map((item) => (
+            {languages.map((item, idx) => (
               <div
                 key={item.lang}
-                className="bg-gradient-to-br from-red-600/10 to-pink-500/10
-                border border-red-600/20 rounded-xl p-6
-                hover:border-red-600/60 hover:shadow-lg hover:shadow-red-600/30
-                transition-all duration-300"
+                className="bg-gradient-to-br from-red-600/10 to-pink-500/10 border border-red-600/20 rounded-xl p-6
+                  hover:border-red-600/60 hover:shadow-lg hover:shadow-red-600/30
+                  transition-all duration-300 animate-fadeInUp"
+                style={{ animationDelay: `${idx * 150}ms` }}
               >
                 <h3 className="font-bold mb-3">{item.lang}</h3>
                 <div className="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
                   <div
-                    className="bg-gradient-to-r from-red-600 to-pink-500 h-2 rounded-full
-                    animate-pulse"
+                    className="bg-gradient-to-r from-red-600 to-pink-500 h-2 rounded-full animate-pulse-glow transition-all"
                     style={{ width: `${item.level}%` }}
                   />
                 </div>
