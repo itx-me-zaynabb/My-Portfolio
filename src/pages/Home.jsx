@@ -1,4 +1,3 @@
-// src/pages/Home.jsx
 import React, { useState, useEffect } from "react";
 import { Github, Linkedin, Mail, ExternalLink, Code2 } from "lucide-react";
 import {
@@ -20,15 +19,22 @@ export default function Home({ setCurrentPage }) {
 
   return (
     <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Animated Background */}
+      {/* Dynamic Mouse-following Background Circles */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-black to-red-900/20" />
         <div
-          className="absolute w-96 h-96 bg-red-600/10 rounded-full blur-3xl animate-pulse"
+          className="absolute w-72 h-72 bg-red-600/10 rounded-full blur-3xl animate-pulse-slow"
+          style={{
+            top: `${mousePosition.y - 144}px`,
+            left: `${mousePosition.x - 144}px`,
+            transition: "all 0.15s ease-out",
+          }}
+        />
+        <div
+          className="absolute w-96 h-96 bg-pink-500/10 rounded-full blur-3xl animate-pulse-slow"
           style={{
             top: `${mousePosition.y - 192}px`,
             left: `${mousePosition.x - 192}px`,
-            transition: "all 0.3s ease-out",
+            transition: "all 0.15s ease-out",
           }}
         />
       </div>
@@ -37,29 +43,29 @@ export default function Home({ setCurrentPage }) {
       <div className="relative z-10 pt-16 min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Left */}
+            {/* Left Side: Text & Buttons */}
             <div className="space-y-6 animate-fadeInUp">
-              <div className="inline-block px-4 py-2 bg-red-600/10 border border-red-600/30 rounded-full">
+              <div className="inline-block px-4 py-2 bg-red-600/10 border border-red-600/30 rounded-full animate-glow">
                 <span className="text-red-400 text-sm font-semibold">
                   👋 Welcome to my portfolio
                 </span>
               </div>
 
-              <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
+              <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight animate-fadeInUp delay-100">
                 Hi, I'm{" "}
                 <span className="bg-gradient-to-r from-red-600 via-pink-500 to-red-500 bg-clip-text text-transparent">
                   Zainab
                 </span>
               </h1>
 
-              <p className="text-xl text-gray-300 leading-relaxed max-w-lg">
+              <p className="text-xl text-gray-300 leading-relaxed max-w-lg animate-fadeInUp delay-200">
                 Junior Frontend React Developer crafting beautiful, responsive
                 web applications with modern JavaScript and cutting-edge UI
                 frameworks.
               </p>
 
               {/* Buttons */}
-              <div className="flex gap-4 pt-4">
+              <div className="flex gap-4 pt-4 animate-fadeInUp delay-300">
                 <button
                   onClick={() => setCurrentPage("projects")}
                   className="group px-8 py-3 bg-gradient-to-r from-red-600 to-pink-500 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-red-600/50 transition-all transform hover:scale-105 flex items-center gap-2"
@@ -70,6 +76,7 @@ export default function Home({ setCurrentPage }) {
                     className="group-hover:translate-x-1 transition-transform"
                   />
                 </button>
+
                 <button
                   onClick={() => setCurrentPage("contact")}
                   className="px-8 py-3 border border-red-600/50 text-red-400 font-semibold rounded-lg hover:bg-red-600/10 transition-all"
@@ -78,40 +85,39 @@ export default function Home({ setCurrentPage }) {
                 </button>
               </div>
 
-              <div className="flex gap-4 pt-8">
-                <a
-                  href="https://github.com/itx-me-zaynabb"
-                  className="group p-3 bg-gray-900 rounded-lg hover:bg-red-600/20 border border-gray-800 hover:border-red-600/50 transition-all"
-                >
-                  <Github
-                    size={20}
-                    className="text-gray-400 group-hover:text-red-400 transition"
-                  />
-                </a>
-                <a
-                  href="https://linkedin.com/in/itx-me-zaynabb"
-                  className="group p-3 bg-gray-900 rounded-lg hover:bg-red-600/20 border border-gray-800 hover:border-red-600/50 transition-all"
-                >
-                  <Linkedin
-                    size={20}
-                    className="text-gray-400 group-hover:text-red-400 transition"
-                  />
-                </a>
-                <a
-                  href="mailto:zainabfattimaa@gmail.com"
-                  className="group p-3 bg-gray-900 rounded-lg hover:bg-red-600/20 border border-gray-800 hover:border-red-600/50 transition-all"
-                >
-                  <Mail
-                    size={20}
-                    className="text-gray-400 group-hover:text-red-400 transition"
-                  />
-                </a>
+              {/* Social Icons */}
+              <div className="flex gap-4 pt-8 animate-fadeInUp delay-400">
+                {[
+                  { icon: Github, link: "https://github.com/itx-me-zaynabb" },
+                  {
+                    icon: Linkedin,
+                    link: "https://linkedin.com/in/itx-me-zaynabb",
+                  },
+                  { icon: Mail, link: "mailto:zainabfattimaa@gmail.com" },
+                ].map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <a
+                      key={idx}
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group p-3 bg-gray-900 rounded-lg hover:bg-red-600/20 border border-gray-800 hover:border-red-600/50 transition-all transform hover:scale-110"
+                    >
+                      <Icon
+                        size={20}
+                        className="text-gray-400 group-hover:text-red-400 transition"
+                      />
+                    </a>
+                  );
+                })}
               </div>
             </div>
 
-            {/* Right Animated Logos */}
+            {/* Right Side: Animated Logos */}
             <div className="relative h-96 hidden md:flex items-center justify-center">
               <div className="relative w-80 h-80">
+                {/* Spinning Border Rings */}
                 <div
                   className="absolute inset-0 border-2 border-transparent border-t-red-600 border-r-pink-500 rounded-full animate-spin"
                   style={{ animationDuration: "8s" }}
@@ -122,23 +128,25 @@ export default function Home({ setCurrentPage }) {
                 />
                 <div className="absolute inset-8 border border-red-600/10 rounded-full animate-pulse" />
 
+                {/* Center Code Icon */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-48 h-48 bg-gradient-to-br from-red-600/20 to-pink-500/20 rounded-full flex items-center justify-center border border-red-600/30 backdrop-blur-sm animate-pulse-glow">
+                  <div className="w-48 h-48 bg-gradient-to-br from-red-600/20 to-pink-500/20 rounded-full flex items-center justify-center border border-red-600/30 backdrop-blur-sm animate-pulse-glow hover:scale-105 transition-transform">
                     <Code2 size={80} className="text-red-400" />
                   </div>
                 </div>
 
+                {/* Rotating Tech Logos */}
                 <div className="absolute inset-0 animate-rotateLogos">
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/4">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/4 hover:scale-110 transition-transform">
                     <JavaScriptLogo />
                   </div>
-                  <div className="absolute right-1/4 top-1/4">
+                  <div className="absolute right-1/4 top-1/4 hover:scale-110 transition-transform">
                     <ReactLogo />
                   </div>
-                  <div className="absolute bottom-1/4 right-0 -translate-x-1/4">
+                  <div className="absolute bottom-1/4 right-0 -translate-x-1/4 hover:scale-110 transition-transform">
                     <NestLogo />
                   </div>
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/4">
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/4 hover:scale-110 transition-transform">
                     <TailwindLogo />
                   </div>
                 </div>
