@@ -78,7 +78,6 @@ export default function Home({ setCurrentPage }) {
                 </button>
               </div>
 
-              {/* Social */}
               <div className="flex gap-4 pt-8">
                 <a
                   href="https://github.com/itx-me-zaynabb"
