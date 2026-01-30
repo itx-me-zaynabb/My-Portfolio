@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {
-  Mail,
-  Linkedin,
-  Github,
-  Briefcase,
-  ReactLogo,
-  NestLogo,
-  Zap,
-} from "../components/Icons"; // Replace with your icon imports
+import { Mail, Linkedin, Github, Briefcase } from "lucide-react"; // For icons
+import { ReactLogo, NestLogo, Zap } from "../components/Logos"; // Your logos
+
 import Footer from "../components/Footer";
 
 export default function Portfolio() {
